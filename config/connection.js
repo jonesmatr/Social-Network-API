@@ -1,17 +1,19 @@
-const mongoose = require('mongoose');
+const { connect, connection } = require('mongoose');
 
-const connectDatabase = async () => {
-    try {
-        const conn = await mongoose.connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false
-        });
-        console.log(`MongoDB Connected: ${conn.connection.host}`);
-    } catch (error) {
-        console.error(`Error: ${error.message}`);
-        process.exit(1);
-    }
-};
+const connectionString = 
+  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/socialNetworkDB';
 
-module.exports = connectDatabase;
+connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+connection.on('connected', () => {
+  console.log('MongoDB connected successfully!');
+});
+
+connection.on('error', (err) => {
+  console.error(`MongoDB connection error: ${err}`);
+});
+
+module.exports = connection;
