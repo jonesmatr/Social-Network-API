@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/jonesmatr/Social-Network-API/issues"
   },
-  "homepage": "https://github.com/jonesmatr/Social-Network-API#readme"
+  "homepage": "https://github.com/jonesmatr/Social-Network-API#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.2"
+  }
 }
